@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>console.sql</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+console.sql</font>
+</center></td></tr></table>
+<pre><span class="s0">/*SELECT code, department, price*/</span>
+<span class="s2">SELECT </span><span class="s1">code</span>
+<span class="s2">FROM </span><span class="s1">Printer </span><span class="s2">JOIN </span><span class="s1">Product</span>
+             <span class="s2">ON </span><span class="s1">Printer.model=Product.model</span>
+             <span class="s2">JOIN </span><span class="s1">Department</span>
+                  <span class="s2">ON </span><span class="s1">Product.department_id=department.id</span>
+<span class="s2">WHERE </span><span class="s1">department = </span><span class="s3">'Services' </span><span class="s2">and </span><span class="s1">price &gt;= </span><span class="s3">'270'</span><span class="s2">;</span>
+
+
+<span class="s0">/*SELECT code, department, screen*/</span>
+<span class="s2">SELECT </span><span class="s1">code</span><span class="s2">, </span><span class="s1">department</span>
+<span class="s2">FROM </span><span class="s1">Laptop </span><span class="s2">JOIN </span><span class="s1">Product</span>
+                  <span class="s2">ON </span><span class="s1">Laptop.model=Product.model</span>
+             <span class="s2">JOIN </span><span class="s1">Department</span>
+                  <span class="s2">ON </span><span class="s1">Product.department_id=department.id</span>
+<span class="s2">WHERE </span><span class="s1">screen = (</span><span class="s2">SELECT </span><span class="s1">MAX(screen) </span><span class="s2">FROM </span><span class="s1">Laptop)</span><span class="s2">;</span>
+
+
+<span class="s0">/*SELECT code, speed*/</span>
+<span class="s2">SELECT </span><span class="s1">COUNT(pc.speed) </span><span class="s2">AS </span><span class="s1">Quantity_PC </span><span class="s0">/*, pc.speed*/</span>
+<span class="s2">FROM </span><span class="s1">PC</span>
+<span class="s2">WHERE </span><span class="s1">speed = (</span><span class="s2">SELECT MIN</span><span class="s1">(speed) </span><span class="s2">FROM </span><span class="s1">PC)</span><span class="s2">;</span>
+<span class="s0">/*GROUP BY pc.speed;*/</span></pre>
+</body>
+</html>
